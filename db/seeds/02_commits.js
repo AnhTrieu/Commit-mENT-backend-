@@ -1,8 +1,6 @@
 exports.seed = function(knex, Promise) {
-  // Deletes ALL existing entries
   return knex('commits').del()
     .then(function () {
-      // Inserts seed entries
       return knex('commits').insert([
         { id: 1, user_id: 1, message: 'testing testing', created_on: '2018-02-27T23:35:11Z', sha: 'blahblahblah' },
         { id: 2, user_id: 1, message: 'lets play rock paper scissors!', created_on: '2018-02-23T02:34:21Z', sha: 'blahblahblah' },
@@ -17,10 +15,10 @@ exports.seed = function(knex, Promise) {
         { id: 11, user_id: 2, message: 'commit this, bro', created_on: '2018-01-18T17:34:08Z', sha: 'blahblahblah' },
         { id: 12, user_id: 2, message: 'all tests passing', created_on: '2018-01-17T17:34:08Z', sha: 'blahblahblah' },
         { id: 13, user_id: 2, message: 'wicked gnarly bug slaying', created_on: '2018-01-16T17:34:08Z', sha: 'blahblahblah' }
-      ]);
+      ])
     }).then(() => {
       return knex.raw(
         `SELECT setval('commits_id_seq', (SELECT MAX(id) FROM commits));`
-      );
+      )
     })
-};
+}

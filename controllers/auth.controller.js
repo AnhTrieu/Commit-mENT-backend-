@@ -12,13 +12,13 @@ class AuthController {
       redirect_uri: 'http://commit-m.surge.sh',
       state: state
     }
-    console.log('This is BODY', params)
     Token.tokenExchange(params)
       .then(data => {
         res.status(200).send(data)
       })
-      .catch(err => console.log(err))
+      .catch(console.error)
   }
 }
+
 
 module.exports = AuthController

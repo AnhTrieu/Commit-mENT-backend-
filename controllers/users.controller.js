@@ -5,17 +5,13 @@ class UsersController {
 
   static index (req, res, next) {
     User.index()
-      .then(users => {
-        return res.json({ users })
-      })
-      .catch(err => {
-        console.log('Error!', err)
-      })
+      .then(users => res.json({ users }))
+      .catch(console.error)
   }
 
   static getUser (req, res, next) {
     User.pullProfile(req.body)
-      .then(({full_name, user_name, avatar_image}) => {
+      .then(({ full_name, user_name, avatar_image }) => {
         User.getUser(user_name)
           .then(result => {
             if (result) {

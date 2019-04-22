@@ -28,8 +28,7 @@ Commit-m was created in 1.5 weeks.
 
 #### Backend
 - PostgreSQL
-- Authentication
-- OAuth
+- Authentication via OAuth
 - Knex.js
 - Node.js
 - Express.js

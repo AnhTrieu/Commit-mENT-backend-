@@ -19,7 +19,7 @@ class User {
           avatar_image: result.data.avatar_url
         }
       })
-      .catch(err => console.log(err, "YOU'VE GOT ERR, BRO!!!!"))
+      .catch(console.error)
   }
 
   static getUser(username) {
@@ -27,6 +27,7 @@ class User {
       .where({ user_name: username})
       .first()
       .then(match => match)
+      .catch(console.error)
   }
 
   static createUser(newUser) {
@@ -38,6 +39,7 @@ class User {
           .first()
           .then(result => result)
       })
+      .catch(console.error)
   }
 
 }

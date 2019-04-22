@@ -23,7 +23,6 @@ class Like {
       .orderBy('count', 'desc')
       .groupBy('commit_id')
       .then(array => {
-        console.log(array);
         let ids = array.slice(0,5).map(commit => {
           let id = parseInt(commit.commit_id)
           let count = parseInt(commit.count)
@@ -38,23 +37,19 @@ class Like {
   }
 
   static addOrRemoveLike (newLike) {
-    // make query for this exact match
     return knex('users_likes')
       .where(newLike)
       .first()
       .then(result => {
-        //if NO match, add it
         if (!result) {
           return knex('users_likes')
             .insert(newLike)
-        //if IS match, delete it
         } else {
           return knex('users_likes')
             .where(newLike)
             .del()
         }
       })
-      //THEN! return the count of all likes with matching commit_id
       .then(() => {
         return knex('users_likes')
           .where({ commit_id: newLike.commit_id })
